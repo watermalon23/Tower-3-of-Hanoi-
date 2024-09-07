@@ -1,0 +1,376 @@
+import java.util.*;
+class Tower_of_Hanoi_34
+{
+	public static void towerofhanoi(int [] digits)
+	{
+		Stack<Integer> st1 = new Stack<>();
+		Stack<Integer> st3 = new Stack<>();
+		Stack<Integer> st2 = new Stack<>();
+		
+		int i=0,n=digits.length,count=1,tall=0;
+		while(i<n){	
+			st1.push(digits[i]);
+			i++;
+		}
+		
+		System.out.println(" A , B and C tower");
+		System.out.println(" A = source  && C = destination");
+			
+		while(!st1.isEmpty())
+		{
+			//*******************print statement***********************
+			if(count == 1){	
+
+				System.out.print("  A:"+"  ");
+
+				for(int a=0;a<st1.size();a++){
+					System.out.print(st1.get(a));
+				}
+					System.out.print(" ");
+					System.out.println();
+			}
+			
+			if(count == 1){
+
+				System.out.print("  B:"+"  ");
+
+				for(int b=0;b<st2.size();b++){
+					System.out.print(st2.get(b));
+				}
+					System.out.print(" ");
+					System.out.println();
+			}
+
+			if(count == 1){
+
+				System.out.print("  C:"+"  ");
+				for(int c=0;c<st3.size();c++){
+					System.out.print(st3.get(c));
+				}
+					System.out.print(" ");
+					System.out.println();
+					System.out.println();
+			}	
+		
+			//##############################
+
+
+
+			//####################################
+
+			tall = st1.pop();
+
+			System.out.print(tall);
+			//######################################
+				
+
+		
+
+			//#################################
+			if(!st1.isEmpty() && st2.isEmpty() && st3.isEmpty()){
+
+				if(st2.isEmpty()){
+					st2.push(tall);
+
+				}else{
+					st3.push(tall);
+				}
+			}
+			else if(!st1.isEmpty() && !st2.isEmpty() || st1.isEmpty() && st3.isEmpty()){
+
+					if(tall < st2.peek()){
+						st2.push(tall);
+					}else{
+						st3.push(tall);
+					}
+			}
+			else if(!st2.isEmpty() && !st3.isEmpty()){
+
+					if(tall < st3.peek()){
+						st3.push(tall);
+					}else{
+						st1.push(tall);
+					}
+			}
+			
+			else if(!st1.isEmpty() && !st3.isEmpty()){
+
+					if(tall < st3.peek() && !st2.isEmpty()){
+						st3.push(tall);
+
+					}else if(tall > st3.peek() ){
+						st2.push(tall);
+
+					}else if(tall < st3.peek() && st2.isEmpty()){
+						st2.push(tall);
+
+					}
+			}else if(st1.isEmpty() && st2.isEmpty() && !st3.isEmpty()){
+
+					if(tall > st3.peek()){
+						st2.push(tall);
+					}
+			}
+					
+			//#############################################
+			//*******************print statement***********************
+
+			System.out.print("  A:"+"  ");
+
+				for(int a=0;a<st1.size();a++){
+					System.out.print(st1.get(a));
+				}
+					System.out.print(" ");
+					System.out.println();
+
+			System.out.print("  B:"+"  ");
+
+				for(int b=0;b<st2.size();b++){
+					System.out.print(st2.get(b));
+				}
+					System.out.print(" ");
+					System.out.println();
+
+			System.out.print("  C:"+"  ");
+
+				for(int c=0;c<st3.size();c++){
+					System.out.print(st3.get(c));
+				}
+					System.out.print(" ");
+					System.out.println();
+					System.out.println();
+
+			//###########################################
+			if(!st3.isEmpty() && !st2.isEmpty()){
+				
+				if(st2.peek() < st3.peek()){
+					count=1;
+						if(!st1.isEmpty()){
+							if(st2.peek() < st1.peek() && st1.peek() < st3.peek()){
+								st3.push(st1.pop());
+							}else{
+								st3.push(st2.pop());
+							}
+						}else{	
+							st3.push(st2.pop());	
+						}
+				}
+				else if(st2.peek() > st3.peek() && st1.isEmpty()){
+
+					count=1;
+					st1.push(st2.pop());
+				}
+				
+			}else{
+				count = 0;
+			}
+
+			//##################################################
+			//*******************print statement***********************
+				if(count == 1){
+
+				System.out.print("  A:"+"  ");
+
+				for(int a=0;a<st1.size();a++){
+					System.out.print(st1.get(a));
+				}
+					System.out.print(" ");
+					System.out.println();
+				}
+
+				if(count == 1){
+
+				System.out.print("  B:"+"  ");
+
+				for(int b=0;b<st2.size();b++){
+					System.out.print(st2.get(b));
+				}
+					System.out.print(" ");
+					System.out.println();
+				}
+				
+				if(count == 1){
+
+				System.out.print("  C:"+"  ");
+
+				for(int c=0;c<st3.size();c++){
+					System.out.print(st3.get(c));
+				}
+					System.out.print(" ");
+					System.out.println();
+					System.out.println();
+				}
+
+			//#################################################
+			if(st1.isEmpty() && !st2.isEmpty() && !st3.isEmpty()){
+
+				count = 1;
+				if(st2.peek() > st3.peek()){
+
+					st1.push(st2.pop());
+				}
+				if(st2.peek() < st3.peek()){
+
+					st3.push(st2.pop());
+				}
+
+			}else{
+				count = 0;
+			}
+						
+			//###################################################
+				//*******************print statement***********************
+				if(count == 1){	
+															System.out.print("  A:"+"  ");
+
+				for(int a=0;a<st1.size();a++){
+					System.out.print(st1.get(a));
+				}
+					System.out.print(" ");
+					System.out.println();
+				}
+
+				if(count == 1){
+
+				System.out.print("  B:"+"  ");
+
+				for(int b=0;b<st2.size();b++){
+					System.out.print(st2.get(b));
+				}
+					System.out.print(" ");
+					System.out.println();
+				}
+	
+				if(count == 1){
+
+				System.out.print("  C:"+"  ");
+
+				for(int c=0;c<st3.size();c++){
+					System.out.print(st3.get(c));
+				}
+					System.out.print(" ");
+					System.out.println();
+					System.out.println();	
+				}
+			
+			//###################################################
+			if(!st3.isEmpty() && !st2.isEmpty()){
+
+				count = 1;
+				if(st3.peek() < st2.peek() && st3.peek() < st1.peek()){
+
+					st1.push(st3.pop());
+				}
+			}else{
+				count = 0;
+			}
+			
+			//#################################################
+			//*******************print statement***********************											
+				if(count == 1){
+																System.out.print("  A:"+"  ");
+
+				for(int a=0;a<st1.size();a++){
+					System.out.print(st1.get(a));
+				}
+					System.out.print(" ");
+					System.out.println();
+				}
+
+				if(count == 1){
+
+				System.out.print("  B:"+"  ");
+
+				for(int b=0;b<st2.size();b++){
+					System.out.print(st2.get(b));
+				}
+					System.out.print(" ");
+					System.out.println();
+				}
+	
+				if(count == 1){
+
+				System.out.print("  C:"+"  ");
+
+				for(int c=0;c<st3.size();c++){
+					System.out.print(st3.get(c));
+				}
+					System.out.print(" ");
+					System.out.println();
+					System.out.println();	
+				}
+			
+			//################################################
+			if(!st3.isEmpty() && !st2.isEmpty()){
+
+				if(st3.peek() < st2.peek() && st3.peek() > st1.peek()){
+
+					st2.push(st3.pop());
+				}
+				
+			}else{
+				count = 0;
+			}
+
+			//#################################################
+			//*******************print statement***********************
+				if(count == 1){			
+															System.out.print("  A:"+"  ");	
+
+				for(int a=0;a<st1.size();a++){
+					System.out.print(st1.get(a));
+				}
+					System.out.print(" ");
+					System.out.println();	
+				}
+			
+				if(count == 1){
+
+				System.out.print("  B:"+"  ");
+
+				for(int b=0;b<st2.size();b++){
+					System.out.print(st2.get(b));
+				}
+					System.out.print(" ");
+					System.out.println();
+				}
+
+				if(count == 1){
+
+				System.out.print("  C:"+"  ");
+
+				for(int c=0;c<st3.size();c++){
+					System.out.print(st3.get(c));
+				}
+					System.out.print(" ");
+					System.out.println();
+					System.out.println();
+				}
+	
+			//################################################
+			if(!st1.isEmpty() && !st2.isEmpty() && !st3.isEmpty()){
+				
+				if(st2.peek() < st1.peek()){
+
+					count=1;
+					st1.push(st2.pop());
+
+				}else if(st2.peek() < st3.peek()){
+
+					count=1;
+					st3.push(st2.pop());
+				}
+			}else{
+				count = 0;
+			}
+			//########################################################
+			
+		}
+				
+	}
+	public static void main(String arg[])	
+	{
+		int digits[]={3,2,1};
+		towerofhanoi(digits);
+	}
+}
